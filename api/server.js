@@ -33,7 +33,6 @@ server.get('/api/projects/:id', async (req, res) => {
         .from('actions as a')
         .leftJoin('projects as p', 'p.id', 'a.project_id')
         .where({ 'a.project_id': req.params.id })
-        console.log(action)
         res.status(200).json({...projects, action})
 
     } catch (error) {
