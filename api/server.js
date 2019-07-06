@@ -19,14 +19,23 @@ server.use(express.json());
 
 
 
-server.get('/api/projects', async (req, res) => {
+server.get('/api/projects/:id', async (req, res) => {
     // get the roles from the database
     try {
-        const projects = await
-            db('projects')
-            .join('actions', {'actions.project_id': 'projects.id'});
-        console.log(projects); // all the records from the table
-        res.status(200).json(projects);
+        const projects = await db
+        .select('p.name', 'p.description', 'p.completed', 'p.id')
+        .from('projects as p')
+        .where({'p.id': req.params.id})
+        .first()
+
+        const action = await db
+        .select('a.notes', 'a.description', 'a.completed', 'a.project_id')
+        .from('actions as a')
+        .leftJoin('projects as p', 'p.id', 'a.project_id')
+        .where({ 'a.project_id': req.params.id })
+        console.log(action)
+        res.status(200).json({...projects, action})
+
     } catch (error) {
         res.status(500).json(error);
     }
