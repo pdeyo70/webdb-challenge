@@ -31,7 +31,6 @@ server.get('/api/projects/:id', async (req, res) => {
         const action = await db
         .select('a.notes', 'a.description', 'a.completed', 'a.project_id')
         .from('actions as a')
-        .leftJoin('projects as p', 'p.id', 'a.project_id')
         .where({ 'a.project_id': req.params.id })
         res.status(200).json({...projects, action})
 
