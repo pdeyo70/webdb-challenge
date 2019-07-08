@@ -28,11 +28,11 @@ server.get('/api/projects/:id', async (req, res) => {
         .where({'p.id': req.params.id})
         .first()
 
-        const action = await db
-        .select('a.notes', 'a.description', 'a.completed', 'a.project_id')
+        const actions = await db
+        .select('a.id', 'a.description', 'a.notes', 'a.completed')
         .from('actions as a')
         .where({ 'a.project_id': req.params.id })
-        res.status(200).json({...projects, action})
+        res.status(200).json({...projects, actions})
 
     } catch (error) {
         res.status(500).json(error);
