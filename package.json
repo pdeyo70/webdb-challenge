@@ -1,0 +1,26 @@
+{
+  "name": "webdb-challenge",
+  "version": "1.0.0",
+  "description": "Data Persistence Sprint Challenge",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "knex": "^0.18.0",
+    "sqlite3": "^4.0.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdeyo70/webdb-challenge.git"
+  },
+  "author": "Paul DeYonghe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pdeyo70/webdb-challenge/issues"
+  },
+  "homepage": "https://github.com/pdeyo70/webdb-challenge#readme"
+}
